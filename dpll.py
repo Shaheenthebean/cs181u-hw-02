@@ -63,4 +63,4 @@ def dpll_count(clauses, varlist, t):
 	return dpll_count(new_clausesT, varlist[1:], t-1) + dpll_count(new_clausesF, varlist[1:], t-1)
 
 def equiv_dpll(f1, f2):
-	return not dpll(Not(Iff(f1, f2)))
+	return not dpll_sat(Not(Iff(f1, f2)))
