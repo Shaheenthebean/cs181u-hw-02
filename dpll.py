@@ -38,8 +38,13 @@ def dpll_sat(f):
 	return dpll(clauses, varlist)
 
 def dpll(clauses, varlist):
-	# Implement me!!!
-	pass
+	if containsUNSATClause(clauses):
+		return False
+	elif allClausesSatisfied(clauses):
+		return True
+	new_clausesT = replaceInAllClauses(clauses, varlist[0], BoolConst(True))
+	new_clausesF = replaceInAllClauses(clauses, varlist[0], BoolConst(False))
+	return dpll(new_clausesT, varlist[1:]) or dpll(new_clausesF, varlist[1:])
 
 # the main dpll_model_count funcion
 # nothing to do here, it just calls the helper dpll_count
@@ -49,9 +54,13 @@ def dpll_model_count(f):
 	return dpll_count(clauses, varlist, len(varlist))
 
 def dpll_count(clauses, varlist, t):
-	# Implement me!!!
-	pass
+	if containsUNSATClause(clauses):
+		return 0
+	elif allClausesSatisfied(clauses):
+		return 2**t
+	new_clausesT = replaceInAllClauses(clauses, varlist[0], BoolConst(True))
+	new_clausesF = replaceInAllClauses(clauses, varlist[0], BoolConst(False))
+	return dpll_count(new_clausesT, varlist[1:], t-1) + dpll_count(new_clausesF, varlist[1:], t-1)
 
 def equiv_dpll(f1, f2):
-	# Implement me!!!
-	pass
+	return not dpll(Not(Iff(f1, f2)))
