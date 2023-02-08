@@ -3,40 +3,32 @@ from propositional_logic import *
 # replace v by e in all disjuncts
 # and return resulting list of clauses
 def replaceInAllDisjuncts(disjuncts, v, e):
-	# Implement me!!!
-	pass
+	return [lit.replace1(v, e).simplify() for lit in disjuncts]
 
-# replace v by e in all clauses 
+# replace v by e in all clauses
 # and return resulting list of clauses
 def replaceInAllClauses(clauses, v, e):
-	# Implement me!!!
-	# You should call your replaceInAllDisjuncts function
-	pass
+	return [replaceInAllDisjuncts(dis, v, e) for dis in clauses]
 
 # check if all disjuncts are unsat
 # and return True or False
 def allDisjunctsUNSAT(disjuncts):
-	# Implement me!!!
-	pass
+	return all([lit.simplify() == BoolConst(False) for lit in disjuncts])
 
 # check if clauses contains an UNSAT clause
 # and return True or False
 def containsUNSATClause(clauses):
-	# Implement me!!!
-	# You should call your allDisjunctsUNSAT function
-	pass
+	return any([allDisjunctsUNSAT(dis) for dis in clauses])
 
 # check if disjuncts has some satisfied disjunct
 # and return True or False
 def someDisjunctSatisfied(disjuncts):
-	# Implement me!!!
-	pass
+	return any([lit.simplify() == BoolConst(True) for lit in disjuncts])
 
 # check if all clauses are satisfied
 # and return True or False
 def allClausesSatisfied(clauses):
-	# Implement me!!!
-	pass
+	return all([someDisjunctSatisfied(dis) for dis in clauses])
 
 # the main dpll_sat funcion
 # nothing to do here, it just calls the helper dpll
@@ -63,4 +55,3 @@ def dpll_count(clauses, varlist, t):
 def equiv_dpll(f1, f2):
 	# Implement me!!!
 	pass
-

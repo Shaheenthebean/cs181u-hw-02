@@ -53,7 +53,7 @@ def test_dpll_sat():
 	assert dpll_sat(Iff(f3,f3))
 	assert dpll_sat(Iff(f4,f4))
 	assert dpll_sat(Iff(f5,f5))
-	
+
 	assert not dpll_sat(F)
 	assert not dpll_sat(Not(T))
 	assert not dpll_sat(And(A,F))
@@ -1620,5 +1620,3 @@ def test_replaceInAllClauses():
 	var = z
 	e = T
 	assert replaceInAllClauses(clauses, var, e) == [[F], [F, Not(w)], [Not(w), F], [Not(w)], [T, w]]
-
-

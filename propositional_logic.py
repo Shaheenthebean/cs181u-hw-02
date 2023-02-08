@@ -115,7 +115,7 @@ class BoolConst(BoolExpression):
     def removeImplications(self):
         return self
     def isLiteral(self):
-        return True 
+        return True
     def isAtom(self):
         return True
     def isNNF(self):
@@ -149,7 +149,7 @@ class BoolVar(BoolExpression):
     def isAtom(self):
         return True
     def isLiteral(self):
-        return True 
+        return True
     def isNNF(self):
         return True
     def isPureDisjunctive(self):
@@ -188,7 +188,7 @@ class Not(BoolExpression):
     def simplify(self):
         expSimplified = self.exp.simplify()
         if isinstance(expSimplified, BoolConst):
-            return BoolConst(not expSimplified.val) 
+            return BoolConst(not expSimplified.val)
         elif isinstance(expSimplified, Not):
             return expSimplified.name
         else:
@@ -416,8 +416,8 @@ class Iff(BoolExpression):
     def isCNF(self):
         return False
 
-    
-def uniqueList(expList): 
+
+def uniqueList(expList):
    # order preserving
    seen = []
    for e in expList:
