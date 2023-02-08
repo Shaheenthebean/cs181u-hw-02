@@ -1620,3 +1620,9 @@ def test_replaceInAllClauses():
 	var = z
 	e = T
 	assert replaceInAllClauses(clauses, var, e) == [[F], [F, Not(w)], [Not(w), F], [Not(w)], [T, w]]
+
+def test_equiv_dpll():
+	d = Iff(A,B)
+	d_ = d.removeImplications()
+
+	assert equiv_dpll(d, d_) == True
