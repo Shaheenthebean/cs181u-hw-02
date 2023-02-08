@@ -15,8 +15,7 @@ class IfThenElse(BoolExpression):
     def format(self):
         return self.indented(0)
     def toBool(self):
-        # Implement me!!!
-        pass
+        return Or(And(self.condition, self.then_branch.toBool()), And(Not(self.condition), self.else_branch.toBool()))
 
 class FunctionCall(BoolExpression):
     def __init__(self, fun_name):
@@ -26,5 +25,4 @@ class FunctionCall(BoolExpression):
         result += "Call " + self.fun_name
         return result
     def toBool(self):
-        # Implement me!!!
-        pass
+        return BoolVar(self.fun_name)

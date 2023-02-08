@@ -5,14 +5,14 @@ from if_then_else_programs import *
 A = BoolVar('A')
 B = BoolVar('B')
 
-program1 = IfThenElse(And(Not(A), Not(B)), 
+program1 = IfThenElse(And(Not(A), Not(B)),
 		FunctionCall('h'),
 		IfThenElse(Not(A),
 			FunctionCall('g'),
 			FunctionCall('f')
 		)
 	)
-	
+
 program2 = IfThenElse(A,
 				FunctionCall('f'),
 				IfThenElse(Not(B),
@@ -30,9 +30,10 @@ program3 = IfThenElse(A,
 				)
 
 def equiv_programs(P1, P2):
-	# Implement me!
-	pass
-	
+	p1expr = P1.toBool()
+	p2expr = P2.toBool()
+	return equiv_dpll(p1expr, p2expr)
+
 print("Program 1")
 print(program1.format())
 print()

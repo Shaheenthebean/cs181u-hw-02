@@ -1623,10 +1623,10 @@ def test_replaceInAllClauses():
 
 def test_equiv_dpll():
 	d = Iff(A,B)
-	d_ = d.removeImplicaptions()
+	d_ = d.removeImplications()
 
 	assert equiv_dpll(d, d_) == True
 
 	assert (equiv_dpll(Implies(A,B), Or(Not(A),B))) == True
-	
+
 	assert (equiv_dpll(BoolConst(True), BoolConst(False))) == False
